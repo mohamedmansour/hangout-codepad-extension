@@ -10,7 +10,7 @@ This uses techniques that I have implemented in the Facebook Friend Exporter tha
 Download the extension!
 ---------------------
 
-Note, this is just a technology preview, I bet it is 99% buggy but it works :)  Install from the gallery: ![https://chrome.google.com/webstore/detail/kdeeabahpojjdkhocdedhfcldgegnmcc](https://chrome.google.com/webstore/detail/kdeeabahpojjdkhocdedhfcldgegnmcc)
+Note, this is just a technology preview, I bet it is 99% buggy but it works :)  Install from the gallery: [https://chrome.google.com/webstore/detail/kdeeabahpojjdkhocdedhfcldgegnmcc](https://chrome.google.com/webstore/detail/kdeeabahpojjdkhocdedhfcldgegnmcc)
 
 Prototype Version
 ---------------------
