@@ -1,6 +1,6 @@
 {
   "name": "Hangout Pad for Google+ ALPHA",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Working prototype for collaborative coding on Google plus Hangouts. This is ALPHA",
   "icons": {
     "16": "img/icon16.png",
@@ -13,9 +13,6 @@
     "http://talkgadget.google.com/*",
     "http://codr.cc/*"
    ],
-  "browser_action": {
-    "default_icon": "img/icon32.png"
-  },
   "background_page": "background.html",
   "content_scripts": [
     {
