@@ -1,0 +1,10 @@
+.hangout-toolbar-button.hangout-games .hangout-toolbar-icon {
+  height: 60px;
+  width: 85px;
+  background-repeat: no-repeat;
+  background-position: 0px 0px;
+}
+.hangout-toolbar-button.hangout-games.hangout-toolbar-button-checked .hangout-toolbar-icon,
+.hangout-toolbar-button.hangout-games .hangout-toolbar-icon:hover {
+  background-position: 0px -58px;
+}

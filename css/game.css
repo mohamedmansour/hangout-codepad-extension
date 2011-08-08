@@ -1,0 +1,17 @@
+body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+#gameboard {
+  border: 1px dotted;
+}
+h1.title {
+  position: absolute;
+  margin: 0px;
+  font-size: 12px;
+  color: #BBB;
+  font-family: sans-serif;
+  left: 20px;
+  top: 5px;
+}
