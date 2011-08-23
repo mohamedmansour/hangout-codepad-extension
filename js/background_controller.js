@@ -5,9 +5,9 @@
  * @constructor
  */
 BackgroundController = function() {
+  this.hangout_id = null;
   this.participants = [];
   this.session_participants = null;
-  this.hangout_part_join_pattern = /^(.*) (joined|left) group chat\.$/;
   this.hangout_tab_id = -1;
   this.talk_injected = false;
   this.waveData = {};
@@ -85,16 +85,12 @@ BackgroundController.prototype.onExtensionRequest = function(request, sender, se
     this.onParticipantsReceived(request.data);
     sendResponse({});
   }
-  else if (request.method == 'ChatReceived') {
-    this.onChatReceived(request.data);
-    sendResponse({});
-  }
   else if (request.method == 'LabStarted') {
     this.onLabStarted();
     sendResponse({});
   }
   else if (request.method == 'HangoutTabCreated') {
-    this.onHangoutTabCreated(sender.tab.id);
+    this.onHangoutTabCreated(sender.tab);
     sendResponse({});
   }
   else if (request.method == 'TalkInjected') {
@@ -133,42 +129,14 @@ BackgroundController.prototype.onLabStarted = function() {
 };
 
 /**
- * Event when a chat message has been received.
- *
- * @param {Object} data The chat response object.
- */
-BackgroundController.prototype.onChatReceived = function(data) {
-  console.log('ChatReceived', data);
-  if (data.from == 'g') { // Google Event
-    var matchJoinPart = data.line.match(this.hangout_part_join_pattern);
-    if (matchJoinPart) {
-      var name = matchJoinPart[1];
-      var state = matchJoinPart[2];
-      if (state == 'joined') {
-        this.onJoin(name);
-      }
-      else { // left
-        this.onPart(name);
-      }
-    }
-  }
-};
-
-/**
  * When the gadget initially loaded.
  */
 BackgroundController.prototype.onGadgetInit = function() {
   var codrID = this.waveData.code;
   if (!codrID) {
-    var req = new XMLHttpRequest();
-    req.open('GET', 'http://codr.cc', false);
-    req.send(null);
-    if (req.status == 200) {
-      var matches = req.responseText.match(/value="http:\/\/codr\.cc\/([a-z0-9]+)"/);
-      if (matches) {
-        codrID = matches[1];
-        this.sendToHangoutTab({method: 'SendMessage', data: {code: codrID}});
-      }
+    if (this.hangout_id) {
+      codrID = this.hangout_id;
+      this.sendToHangoutTab({method: 'SendMessage', data: {code: codrID}});
     }
   }
   return codrID;
@@ -217,8 +185,15 @@ BackgroundController.prototype.onParticipantsReceived = function(data) {
  *
  * @param {Object} tab The current tab that the browser action is referring to.
  */
-BackgroundController.prototype.onHangoutTabCreated = function(tabid) {
-  this.hangout_tab_id = tabid;
+BackgroundController.prototype.onHangoutTabCreated = function(tab) {
+  var match = tab.url.match(/https:\/\/talkgadget\.google\.com\/hangouts\/([a-z0-9]+)/);
+  if (match) {
+    this.hangout_id = match[1];
+  }
+  else {
+    console.log('Something really wrong happened: ' + tab.url);
+  }
+  this.hangout_tab_id = tab.id;
   this.waveData = {};
 };
 

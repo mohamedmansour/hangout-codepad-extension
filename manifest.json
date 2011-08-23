@@ -1,6 +1,6 @@
 {
   "name": "Hangout Pad for Google+ ALPHA",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Working prototype for collaborative coding on Google plus Hangouts. This is ALPHA",
   "icons": {
     "16": "img/icon16.png",
@@ -11,7 +11,7 @@
   "permissions": [
     "tabs",
     "http://talkgadget.google.com/*",
-    "http://codr.cc/*"
+    "http://beta.etherpad.org/*"
    ],
   "background_page": "background.html",
   "content_scripts": [

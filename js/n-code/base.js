@@ -17,7 +17,7 @@ else {
 
 var onGadgetInit = function(response) {
   if (response.method == 'GadgetInit') {
-    codeFrame.src = 'http://codr.cc/' + response.data;
+    codeFrame.src = 'http://beta.etherpad.org/p/' + response.data + '?showChat=false';
     document.body.appendChild(codeFrame);
   }
 };
