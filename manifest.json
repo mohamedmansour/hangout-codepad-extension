@@ -1,6 +1,6 @@
 {
   "name": "Hangout Pad for Google+ ALPHA",
-  "version": "0.0.3",
+  "version": "0.0.3.1",
   "description": "Working prototype for collaborative coding on Google plus Hangouts. This is ALPHA",
   "icons": {
     "16": "img/icon16.png",

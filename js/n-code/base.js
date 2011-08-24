@@ -6,14 +6,7 @@ hangout.code = hangout.code || {};
 var codeFrame = document.createElement('iframe');
 codeFrame.id = 'hangout-gadget';
 codeFrame.width = '100%';
-
-if (navigator.userAgent.match(/Macintosh/)) {
-  alert('MAC Sad Face :-(');
-  codeFrame.height = '500px';
-}
-else {
-  codeFrame.height = '100%';
-}
+codeFrame.height = '100%';
 
 var onGadgetInit = function(response) {
   if (response.method == 'GadgetInit') {
